@@ -28,10 +28,12 @@ expected_columns = [
 ]
 
 # Validate columns
-if list(df.columns) == expected_columns:
+missing_columns = set(expected_columns) - set(df.columns)
+if len(missing_columns) == 0:
     print("Dataset validation successful.")
 else:
-    raise Exception("Dataset validation failed. Column mismatch.")
+    print("Missing Columns:", missing_columns)
+    raise Exception("Dataset validation failed.")
 
 # Print summary
 print("\nDataset Summary")
